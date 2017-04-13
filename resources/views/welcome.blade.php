@@ -38,7 +38,7 @@
             .top-right {
                 position: absolute;
                 right: 10px;
-                top: 18px;
+                top: 25px;
             }
 
             .content {
@@ -49,14 +49,35 @@
                 font-size: 84px;
             }
 
+            .title > sup
+            {
+                font-size: 30%;
+                font-weight: bold;
+                color: orangered;
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 15px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+
+            .links > a:hover
+            {
+                color: orangered;
+            }
+
+            .profile-image
+            {
+                width: 40px;
+                height: 40px;
+                vertical-align: middle;
+                margin-right: 1em;
+                margin-top: -5px;
             }
 
             .m-b-md {
@@ -69,7 +90,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">
+                            <img src="{{ asset('storage/assets/profile_icons/male.svg') }}" class="profile-image">
+                            My Profile
+                        </a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
@@ -79,15 +103,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    SHR@
+                    <strong>Deployer</strong>
+                    <sup>Version 1.0</sup>
                 </div>
             </div>
         </div>
