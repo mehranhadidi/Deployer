@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServersController extends Controller
 {
@@ -13,7 +14,9 @@ class ServersController extends Controller
      */
     public function index()
     {
-        return view('servers.index');
+        $servers = Auth::user()->servers;
+
+        return view('servers.index', compact('servers'));
     }
 
     /**
@@ -24,7 +27,18 @@ class ServersController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $this->validate($request, [
+            'name' => 'required',
+            'ip' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($server = Auth::user()->servers()->create($request->all()))
+        {
+            return redirect()->route('servers.index')
+                ->with('server.created', 'Server created, We will configure it. Check the status on servers list.');
+        };
     }
 
     /**

@@ -7,6 +7,27 @@
                 <div class="panel-heading">Create a Server</div>
 
                 <div class="panel-body">
+                    {{-- validate server creation --}}
+                    @if($errors->all())
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Ops, </strong>
+                            Please fix the following errors:
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    {{-- Server creation successfull message --}}
+                    @if (session('server.created'))
+                        <div class="alert alert-success">
+                            <strong>Congratulation!</strong><br>
+                            {{ session('server.created') }}
+                        </div>
+                    @endif
+
                     <form class="form-horizontal col-md-6 col-md-offset-3" method="post" action="{{ route('servers.store') }}" autocomplete="off">
 
                         {{ csrf_field() }}
@@ -64,19 +85,32 @@
                 <div class="panel-body">
                     <table class="table table-striped">
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>IP Address</th>
                             <th>Status</th>
+                            <th>Created Date</th>
                             <th>Manage</th>
                         </tr>
-                        <tr>
-                            <td>Storage1</td>
-                            <td>192.168.1.1</td>
-                            <td><i class="glyphicon glyphicon-ok color-green"></i>Active</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-eye-open"></i>View</a>
-                            </td>
-                        </tr>
+
+                        @if(count($servers))
+                            @foreach($servers as $server)
+                                <tr>
+                                    <td>{{ ++$loop->index }}</td>
+                                    <td>{{ $server->name }}</td>
+                                    <td>{{ $server->ip }}</td>
+                                    <td><i class="glyphicon glyphicon-ok color-green"></i>Active</td>
+                                    <td><i class="glyphicon glyphicon-time" title="{{ $server->created_at }}"></i>{{ $server->created_at->diffForHumans() }}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-cog"></i>Manage</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center">
+                                <td colspan="6">You don't have any server at this time. Start by creating it.</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>

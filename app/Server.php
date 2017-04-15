@@ -2,13 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Server extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -16,7 +13,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'ip',
+        'username',
         'password',
     ];
 
@@ -27,16 +25,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
-     * All Servers created by this user
+     * User who own this server
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function servers()
+    public function user()
     {
-        return $this->hasMany(Server::class);
+        return $this->belongsTo(User::class);
     }
 }
