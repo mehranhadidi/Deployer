@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Servers</a></li>
+                        <li><a href="{{ route('servers.index') }}">Servers</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
