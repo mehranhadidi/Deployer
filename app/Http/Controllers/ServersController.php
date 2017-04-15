@@ -13,17 +13,7 @@ class ServersController extends Controller
      */
     public function index()
     {
-        return 'servers';
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('servers.index');
     }
 
     /**
@@ -34,7 +24,7 @@ class ServersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**

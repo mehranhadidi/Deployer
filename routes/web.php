@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index');
 
-Route::resource('servers', 'ServersController');
+Route::resource('servers', 'ServersController',['except' => [
+    'create',
+]]);
