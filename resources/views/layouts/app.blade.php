@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="#">Servers</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,6 +60,8 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/account">Account</a>
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
