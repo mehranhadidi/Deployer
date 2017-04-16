@@ -102,7 +102,7 @@
                                     <td><i class="glyphicon glyphicon-ok color-green"></i>Active</td>
                                     <td><i class="glyphicon glyphicon-time" title="{{ $server->created_at }}"></i>{{ $server->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-cog"></i>Manage</a>
+                                        <a href="{{ route('servers.show', $server->id) }}" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-cog"></i>Manage</a>
                                     </td>
                                 </tr>
                             @endforeach

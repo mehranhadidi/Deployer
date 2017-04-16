@@ -12,3 +12,28 @@ i
 {
   color: red;
 }
+
+.panel-heading
+{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.server-details
+{
+  width: 100%;
+  font-size: 16px;
+
+  td
+  {
+    color: #666;
+  }
+}
+
+table.no-border-top
+{
+  th
+  {
+    border-top: 0 !important;
+  }
+}

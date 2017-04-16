@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,10 @@ class ServersController extends Controller
      */
     public function show($id)
     {
-        //
+        $server = Server::find($id);
+
+        return view('servers.show', compact('server'));
+
     }
 
     /**

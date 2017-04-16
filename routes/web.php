@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index');
-
-Route::resource('servers', 'ServersController',['except' => [
-    'create',
-]]);
+// Protected Routes
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', 'HomeController@index');
+    Route::resource('servers', 'ServersController',['except' => [
+        'create',
+    ]]);
+});
