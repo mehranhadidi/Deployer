@@ -27,6 +27,7 @@ i
   td
   {
     color: #666;
+    font-weight: normal;
   }
 }
 
@@ -36,4 +37,9 @@ table.no-border-top
   {
     border-top: 0 !important;
   }
+}
+
+.navbar-brand
+{
+  font-weight: bold;
 }

@@ -23,4 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('servers', 'ServersController',['except' => [
         'create',
     ]]);
+    Route::resource('servers.sites', 'SitesController',['except' => [
+        'create',
+    ]]);
 });

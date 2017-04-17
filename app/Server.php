@@ -36,4 +36,14 @@ class Server extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * All sites that are created under this server
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
 }

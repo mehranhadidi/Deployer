@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Server;
+use App\Site;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ServersController extends Controller
+class SitesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,30 +15,36 @@ class ServersController extends Controller
      */
     public function index()
     {
-        $servers = Auth::user()->servers;
+        //
+    }
 
-        return view('servers.index', compact('servers'));
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param Server $server
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Server $server)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'ip' => 'ip',
-            'username' => 'required',
-            'password' => 'required',
+            'doc_root' => 'required',
         ]);
 
-        if($server = Auth::user()->servers()->create($request->all()))
+        if($server->sites()->create($request->all()))
         {
-            return redirect()->route('servers.index')
-                ->with('server.created', 'Server created, We will configure it. Check the status on servers list.');
+            return redirect()->route('servers.show', $server->id)
+                ->with('site.created', 'Site Created. Now you can configure it.');
         };
     }
 
@@ -50,10 +56,7 @@ class ServersController extends Controller
      */
     public function show($id)
     {
-        $server = Server::find($id);
-
-        return view('servers.show', compact('server'));
-
+        return 'yohooo';
     }
 
     /**
@@ -82,11 +85,15 @@ class ServersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Server $server
+     * @param Site $site
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Server $server, Site $site)
     {
-        //
+        $site->delete();
+
+        return 'true';
     }
 }

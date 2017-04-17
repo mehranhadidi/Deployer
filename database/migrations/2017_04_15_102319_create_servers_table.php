@@ -21,6 +21,11 @@ class CreateServersTable extends Migration
             $table->string('username', 30);
             $table->string('password', 60);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 

@@ -18,3 +18,34 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('.delete').click(function (e) {
+    e.preventDefault();
+    obj = $(this);
+
+    route = obj.attr('href');
+
+    if(route)
+        if(confirm("Are you sure you want to delete this record?"))
+            $.ajax({
+                url: route,
+                type: 'post',
+                data: {_method: 'delete'},
+                success: function (msg) {
+                    if(msg == 'true')
+                        obj.closest('tr').fadeOut(300);
+                    else
+                        alert('Ops, Something happened. Try again later.');
+                },
+                fail: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+});
