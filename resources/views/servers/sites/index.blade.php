@@ -22,6 +22,8 @@
         </div>
     @endif
 
+    <span class=""></span>
+
     <form class="form-horizontal col-md-6 col-md-offset-3" method="post" action="{{ route('servers.sites.store', $server->id) }}">
 
         {{ csrf_field() }}
@@ -46,7 +48,8 @@
         <div class="form-group">
             <label for="repository" class="control-label col-sm-3">Repository</label>
             <div class="col-sm-9">
-                <input type="text" name="repository" id="repository" class="form-control" placeholder="mehranhadidi/deployer">
+                <a href="#" class="btn btn-success"><i class="fa fa-github"></i>Connect to github</a>
+                {{--<input type="text" name="repository" id="repository" class="form-control" placeholder="mehranhadidi/deployer">--}}
             </div>
         </div>
 
@@ -54,7 +57,7 @@
         <div class="form-group">
             <label for="ssl" class="control-label col-sm-3">SSL</label>
             <div class="col-sm-9">
-                <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-lock"></i>Configure SSL</a>
+                <a href="#" class="btn btn-success"><i class="fa fa-lock"></i>Configure SSL</a>
             </div>
         </div>
 
